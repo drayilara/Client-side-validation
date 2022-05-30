@@ -56,7 +56,7 @@ function validateEmail(email) {
 function validatePassword(password) {
 
     let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-    console.log(regex.test(password))
+
     if(regex.test(password)) {
         return true;
     }else {
@@ -84,6 +84,7 @@ function run() {
         let {usernameSmall, emailSmall, passwordSmall, passwordMatchSmall} = getSmallElements();
 
         let successMsg = `You have successfully signed up`;
+        let errorMessage = `There was a problem submitting your form`;
 
 
         form.addEventListener("submit", (e) => {
@@ -127,7 +128,8 @@ function run() {
 
             // Here the user credentials is not ok
 
-            titleField.textContent = "There was a problem submitting your form";
+            titleField.classList.remove("success");
+            titleField.textContent = errorMessage;
 
             if(!isUsername) {
                 usernameSmall.classList.add("failure-small-color");
